@@ -1,4 +1,18 @@
 
+	function cargarPerro()
+	{
+
+		let url="https://dog.ceo/api/breeds/image/random";
+		fetch(url).then(response=>response.json()).then(response=>{
+
+			
+			document.getElementById("perro").src=response.message;
+
+		});
+
+	}
+
+
 	function leerInputs()
 	{
 	let url=new URLSearchParams(location.search);
@@ -6,7 +20,7 @@
 	let numeros=url.getAll("numeros");
 	let nombre=url.get('nombre');
 	let resultado=document.getElementById("resultado");
-
+	cargarPerro();
 	resultado.innerHTML="<br>"+nombre+":"+analizar(numeros);
 
 	}
