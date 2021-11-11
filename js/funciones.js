@@ -2,15 +2,28 @@
 
 function cargarUniversidades()
 {
-let url="http://universities.hipolabs.com/search?country=colombia";
-let m="";
-fetch(url).then(response=>response.json()).then(response=>{
+	let url="http://universities.hipolabs.com/search?country=colombia";
+	let m="";
+	let table="\n<table class='table table-striped' border='2'>"+
+	"\n<thead>"+
+	"\n<th scope='col'> Nombre</th>"+
+	"\n<th scope='col'> URL</th>"+
+	"\n<th scope='col'> QR</th>"+
+	"\n</thead>";
 
-	for (var i = 0; i < response.length; i++) {
-		m+="<br>"+response[i].name;
-	}
+	let fila="\n<tr>"+
+	"\n<td> @@ </td>"+
+	"\n<td> <a href='&&'> &&</a></td>"+
+	"\n<td> <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x50&data=&&' /> </td>"+
+	"\n</tr>";
+	fetch(url).then(response=>response.json()).then(response=>{
 
-	document.getElementById("universidades").innerHTML=m;
+		for (var i = 0; i < response.length; i++) {
+			m+=fila.replace("@@",response[i].name).replaceAll("&&",response[i].web_pages[0]);
+		}
+
+		m=table+m+"\n</table>";
+		document.getElementById("universidades").innerHTML=m;
 
 	});
 
