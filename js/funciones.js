@@ -1,8 +1,7 @@
 
-
 function cargarUniversidades()
 {
-	let url="http://universities.hipolabs.com/search?country=colombia";
+	let url="https://cors-anywhere.herokuapp.com/http://universities.hipolabs.com/search?country=colombia";
 	let m="";
 	let table="\n<table class='table table-striped' border='2'>"+
 	"\n<thead>"+
@@ -16,7 +15,7 @@ function cargarUniversidades()
 	"\n<td> <a href='&&'> &&</a></td>"+
 	"\n<td> <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x50&data=&&' /> </td>"+
 	"\n</tr>";
-	fetch(url).then(response=>response.json()).then(response=>{
+	fetch(url, {method:"GET", headers: { origin:"dominio.com" }}).then(response=>response.json()).then(response=>{
 
 		for (var i = 0; i < response.length; i++) {
 			m+=fila.replace("@@",response[i].name).replaceAll("&&",response[i].web_pages[0]);
