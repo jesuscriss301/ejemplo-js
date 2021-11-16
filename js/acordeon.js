@@ -93,9 +93,8 @@ msg ="\n <div class='card'>" +
 			console.log(state);
 			console.log(country);
 			console.log(photo);
-		});
 
-
+			
 		msg.replace("name", nombre)
 		msg=msg.replace("leer_email",email)
 		.replace("leerciudad",city)
@@ -103,4 +102,9 @@ msg ="\n <div class='card'>" +
 		.replace("leerPais",country)
 		.replace("photo","https://randomuser.me/api/portraits/women/60.jpg");
 		 return msg;
+
+
+		});
+
+
 }
