@@ -95,9 +95,7 @@ msg ="\n <div class='card'>" +
 			console.log(photo);
 
 			
-		msg.replace("name", nombre)
-		msg=msg.replace("leer_email",email)
-		.replace("leerciudad",city)
+		msg=msg.replace("leer_email",email).replace("name", nombre).replace("leerciudad",city)
 		.replace("leer_estado",state)
 		.replace("leerPais",country)
 		.replace("photo","https://randomuser.me/api/portraits/women/60.jpg");
