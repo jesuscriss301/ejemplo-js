@@ -73,21 +73,34 @@ msg ="\n <div class='card'>" +
 		 "\n </div>" +
 		 "\n </div>"
 		 let data;
+		 var nombre="";
+		 var email="";
+		 var city= "";
+		 var state="";
+		 var country="";
+		 var photo="";
 		 fetch("https://randomuser.me/api/",{method:"GET", headers: { origin:"dominio.com" }}).then(response=>response.json()).then(response=>{
 			 data=response;
-			console.log(data.results[0].name.first + " " +data.results[0].name.last);
-			console.log(data.results[0].email);
-			console.log(data.results[0].location.city);
-			console.log(data.results[0].location.state);
-			console.log(data.results[0].location.country);
-			console.log(data.results[0].picture.large);
+			 nombre=data.results[0].name.first+"&nbsp;"+data.results[0].name.last;
+			 email=data.results[0].email;
+			 city=data.results[0].location.city;
+			 state=data.results[0].location.state;
+			 country=data.results[0].location.country;
+			 photo=data.results[0].picture.large;
+			console.log(nombre);
+			console.log(email);
+			console.log(city);
+			console.log(state);
+			console.log(country);
+			console.log(photo);
 		});
 
-		msg=msg.replace("name","data.results[0].name.first + "+ " +data.results[0].name.last")
-		.replace("leer_email","data.results[0].email")
-		.replace("leerciudad","data.results[0].location.city")
-		.replace("leer_estado","data.results[0].location.state")
-		.replace("leerPais","data.results[0].location.country")
+
+		msg.replace("name", nombre)
+		msg=msg.replace("leer_email",email)
+		.replace("leerciudad",city)
+		.replace("leer_estado",state)
+		.replace("leerPais",country)
 		.replace("photo","https://randomuser.me/api/portraits/women/60.jpg");
 		 return msg;
 }
