@@ -1,3 +1,5 @@
+var i =0;
+var pagina =0;
 function cargarUniversidades()
 {
 	let url="https://programacion-web---i-sem-2019.gitlab.io/persistencia/json_web/json/universidades.json";
@@ -31,8 +33,9 @@ function cargarUniversidades()
 	fetch(url, {method:"GET", headers: { origin:"dominio.com" }}).then(response=>response.json()).then(response=>{
 
 
-		for (var i = 0; i < 10; i++) {
+		for (i; i < response.length; i++) {
 
+			//if (i==response.length) {break;}
 			m+=fila.replace("@@",response[i].name).
 							replaceAll("&&",response[i].web_pages[0]).
 							replaceAll("flush-collapseOne","flush-collapse"+i).
@@ -41,10 +44,12 @@ function cargarUniversidades()
 
 		m=table+m+"\n</div>";
 		document.getElementById("universidades").innerHTML=m;
+		//pagination(response);
 	});
 
 
 }
+
 
 function administrador(){
 
