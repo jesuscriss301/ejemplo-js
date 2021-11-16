@@ -1,6 +1,6 @@
 function cargarUniversidades()
 {
-	let url="https://cors-anywhere.herokuapp.com/http://universities.hipolabs.com/search?country=colombia";
+	let url="https://programacion-web---i-sem-2019.gitlab.io/persistencia/json_web/json/universidades.json";
 	let m="";
 	let table="<div class='accordion accordion-flush' id='accordionFlushExample'>";
 
@@ -16,7 +16,7 @@ function cargarUniversidades()
     "<div class='row align-items-start'>"+
     "<div class='col-9'>"+
     "<a href='&&'> &&</a>"+
-
+		administrador() +
     "</div>"+
     "<div class='col-3'>"+
     "<img src='https://api.qrserver.com/v1/create-qr-code/?size=150x50&data=&&' />"+
@@ -25,17 +25,64 @@ function cargarUniversidades()
     "</div>" +
     "\n </div>" +
     "\n </div>" +
-    "\n </div>"
+    "\n </div>";
+
+
 	fetch(url, {method:"GET", headers: { origin:"dominio.com" }}).then(response=>response.json()).then(response=>{
 
-		for (var i = 0; i < response.length; i++) {
-			m+=fila.replace("@@",response[i].name).replaceAll("&&",response[i].web_pages[0]).replaceAll("flush-collapseOne","flush-collapse"+i).replaceAll("flush-headingOne","flush-heading"+i);
+
+		for (var i = 0; i < 10; i++) {
+
+			m+=fila.replace("@@",response[i].name).
+							replaceAll("&&",response[i].web_pages[0]).
+							replaceAll("flush-collapseOne","flush-collapse"+i).
+							replaceAll("flush-headingOne","flush-heading"+i);
 		}
 
 		m=table+m+"\n</div>";
 		document.getElementById("universidades").innerHTML=m;
-
 	});
 
 
+}
+
+function administrador(){
+
+let msg=""
+msg ="\n <div class='card'>" +
+		 "\n <div class='container'>" +
+		 "\n <div class='row align-items-start'>" +
+		 "\n <div class='col-9'>" +
+		 "\n <ul>" +
+				"\n <li> Administrador: name </li>" +
+				"\n <li> email: leer_email </li>" +
+				"\n <li> ciudad: leerciudad </li>" +
+				"\n <li> estado: leer_estado </li>" +
+				"\n <li> pais: leerPais </li>" +
+		 "\n </ul>" +
+		 "\n </div>" +
+		 "\n <div class='col-3'>" +
+		 "\n <img src='photo' />" +
+		 "\n </div>" +
+		 "\n </div>" +
+		 "\n </div>" +
+		 "\n </div>"
+		 let data;
+		 fetch("https://randomuser.me/api/",{method:"GET", headers: { origin:"dominio.com" }}).then(response=>response.json()).then(response=>{
+			 data=response;
+			console.log(data.results[0].name.first + " " +data.results[0].name.last);
+			console.log(data.results[0].email);
+			console.log(data.results[0].location.city);
+			console.log(data.results[0].location.state);
+			console.log(data.results[0].location.country);
+			console.log(data.results[0].picture.large);
+		});
+
+		msg=msg.replace("name","data.results[0].name.first + "+ " +data.results[0].name.last")
+		.replace("leer_email","data.results[0].email")
+		.replace("leerciudad","data.results[0].location.city")
+		.replace("leer_estado","data.results[0].location.state")
+		.replace("leerPais","data.results[0].location.country")
+		.replace("photo","https://randomuser.me/api/portraits/women/60.jpg");
+		 return msg;
 }

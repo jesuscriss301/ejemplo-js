@@ -81,7 +81,7 @@ function leerURL()
 	function inputHidden(nombre)
 	{
 
-		return "<br> <input type='hidden' name='nombre' value='"+nombre+"' />"; 
+		return "<br> <input type='hidden' name='nombre' value='"+nombre+"' />";
 	}
 
 
@@ -167,5 +167,5 @@ function leerURL()
 				}
 
 			}
-			return msg+"</p>";	
+			return msg+"</p>";
 		}
